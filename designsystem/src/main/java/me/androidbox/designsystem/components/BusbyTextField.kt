@@ -14,12 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text2.BasicSecureTextField
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text2.BasicTextField2
+import androidx.compose.foundation.text2.input.TextFieldLineLimits
 import androidx.compose.foundation.text2.input.TextFieldState
-import androidx.compose.foundation.text2.input.TextObfuscationMode
 import androidx.compose.foundation.text2.input.rememberTextFieldState
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,27 +34,27 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import me.androidbox.designsystem.R
-import me.androidbox.designsystem.ui.theme.EyeClosedIcon
-import me.androidbox.designsystem.ui.theme.EyeOpenedIcon
-import me.androidbox.designsystem.ui.theme.LockIcon
+import me.androidbox.designsystem.ui.theme.CheckIcon
+import me.androidbox.designsystem.ui.theme.EmailIcon
 import me.androidbox.designsystem.ui.theme.LoginAppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun BusbyPasswordTextField(
+fun BusbyTextField(
     state: TextFieldState,
+    startIcon: ImageVector?,
+    endIcon: ImageVector?,
     hint: String,
     title: String?,
     modifier: Modifier = Modifier,
-    isPasswordValid: Boolean = false,
-    isPasswordVisible: Boolean = false,
-    onTogglePasswordVisibility: () -> Unit,
+    error: String? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    additionalInfo: String? = null
 ) {
     var isFocused by remember {
         mutableStateOf(false)
@@ -63,33 +63,49 @@ fun BusbyPasswordTextField(
     Column(
         modifier = modifier,
     ) {
-        if(!title.isNullOrBlank()) {
-            Text(text = title,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 20.sp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom
+        ) {
+
+            if(!title.isNullOrBlank()) {
+                Text(text = title,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 20.sp)
+            }
+
+            if(!error.isNullOrBlank()) {
+                Text(
+                    text = error,
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp)
+            }
+            else if(!additionalInfo.isNullOrBlank()) {
+                Text(
+                    text = additionalInfo,
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp)
+            }
         }
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        BasicSecureTextField(
+        BasicTextField2(
             state = state,
-            textObfuscationMode =
-            if(isPasswordVisible) {
-                TextObfuscationMode.Visible
-            }
-            else {
-                TextObfuscationMode.Hidden
-            },
-            keyboardType = KeyboardType.Password,
             textStyle = LocalTextStyle.current.copy(
                 color = MaterialTheme.colorScheme.onBackground
             ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType
+            ),
+            lineLimits = TextFieldLineLimits.SingleLine,
             cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
                 .background(
                     color = if (isFocused) {
-                        MaterialTheme.colorScheme.primary.copy(alpha = 0.05f)
+                        MaterialTheme.colorScheme.primary.copy( alpha = 0.05f)
                     } else {
                         MaterialTheme.colorScheme.surface
                     }
@@ -103,7 +119,7 @@ fun BusbyPasswordTextField(
                     },
                     shape = RoundedCornerShape(16.dp)
                 )
-                .padding(horizontal = 12.dp)
+                .padding(12.dp)
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
                 },
@@ -113,13 +129,14 @@ fun BusbyPasswordTextField(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
-                    Icon(
-                        imageVector = LockIcon,
-                        contentDescription = "Email icon",
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(modifier = Modifier.width(16.dp))
+                    if(startIcon != null) {
+                        Icon(
+                            imageVector = EmailIcon,
+                            contentDescription = "Email icon",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Spacer(modifier = Modifier.width(16.dp))
+                    }
 
                     Box(
                         modifier = Modifier.weight(1f)
@@ -133,19 +150,15 @@ fun BusbyPasswordTextField(
                         innerBox()
                     }
 
-                    Spacer(modifier = Modifier.width(16.dp))
+                    if(endIcon != null && error.isNullOrBlank()) {
+                        Spacer(modifier = Modifier.width(16.dp))
 
-                    IconButton(onClick = {
-                        onTogglePasswordVisibility()
-                    }) {
                         Icon(
-                            imageVector = if (isPasswordVisible) EyeClosedIcon else EyeOpenedIcon,
-                            contentDescription = if (isPasswordVisible) stringResource(id = R.string.show_password) else stringResource(id = R.string.hide_password),
+                            imageVector = CheckIcon,
+                            contentDescription = "Check icon",
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier
-                                .padding(end = 8.dp)
+                            modifier = Modifier.padding(end = 8.dp)
                         )
-
                     }
                 }
             }
@@ -158,14 +171,16 @@ fun BusbyPasswordTextField(
 @Preview(showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
-fun PreviewBusbyRunnerPasswordTextField() {
+fun PreviewBusbyRunnerTextField() {
     LoginAppTheme() {
-        BusbyPasswordTextField(
+        BusbyTextField(
             state = rememberTextFieldState(),
+            startIcon = EmailIcon,
+            endIcon = CheckIcon,
             hint = "example@test.com",
-            title = "Password",
-            isPasswordVisible = false,
-            onTogglePasswordVisibility = {},
+            title = "Email",
+            keyboardType = KeyboardType.Email,
+            additionalInfo = "Must be a valid email",
             modifier = Modifier.fillMaxWidth())
     }
 }
