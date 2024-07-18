@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Login App"
 include(":app")
- 
+include(":authentication")
+include(":designsystem")

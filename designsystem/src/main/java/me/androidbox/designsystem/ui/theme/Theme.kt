@@ -1,4 +1,4 @@
-package me.androidbox.loginapp.ui.theme
+package me.androidbox.designsystem.ui.theme
 
 import android.app.Activity
 import android.os.Build

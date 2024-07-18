@@ -1,4 +1,4 @@
-package me.androidbox.loginapp.ui.theme
+package me.androidbox.designsystem.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
