@@ -1,15 +1,12 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package me.androidbox.loginapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.ExperimentalFoundationApi
-import me.androidbox.authentication.presentation.login.LoginScreen
-import me.androidbox.authentication.presentation.login.LoginState
+import cafe.adriel.voyager.navigator.Navigator
 import me.androidbox.designsystem.ui.theme.LoginAppTheme
+import me.androidbox.loginapp.navigation.LoginScreenRoot
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,10 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LoginAppTheme {
-                LoginScreen(
-                    loginState = LoginState(),
-                    onLoginAction = {}
-                )
+               Navigator(screen = LoginScreenRoot)
             }
         }
     }
