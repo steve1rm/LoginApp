@@ -23,3 +23,6 @@ rootProject.name = "Login App"
 include(":app")
 include(":authentication")
 include(":designsystem")
+include(":authentication:presentation")
+include(":authentication:data")
+include(":authentication:domain")
