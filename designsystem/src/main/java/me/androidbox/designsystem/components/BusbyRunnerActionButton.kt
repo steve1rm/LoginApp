@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,7 +26,7 @@ import me.androidbox.designsystem.ui.theme.BusbyGray
 import me.androidbox.designsystem.ui.theme.LoginAppTheme
 
 @Composable
-fun BusbyRunnerActionButton(
+fun BusbyActionButton(
     text: String,
     isLoading: Boolean,
     modifier: Modifier = Modifier,
@@ -79,7 +78,7 @@ fun BusbyRunnerActionButton(
 )
 fun PreviewBusbyRunnerActionButton() {
     LoginAppTheme {
-        BusbyRunnerActionButton(
+        BusbyActionButton(
             text = "Sign in",
             isLoading = false,
             isEnabled = true) {
