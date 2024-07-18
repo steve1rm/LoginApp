@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+//    implementation(project(":designsystem"))
+    implementation(project(":authentication:presentation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
