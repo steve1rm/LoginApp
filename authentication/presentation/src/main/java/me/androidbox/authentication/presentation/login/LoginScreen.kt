@@ -96,7 +96,7 @@ fun LoginScreen(
             BusbyActionButton(
                 text = stringResource(id = R.string.login),
                 isLoading = loginState.isLoggingIn,
-                isEnabled = loginState.canLogin || !loginState.isLoggingIn,
+                isEnabled = loginState.canLogin && !loginState.isLoggingIn,
                 onClicked = {
                     onLoginAction(LoginAction.OnLoginClicked)
                 }
