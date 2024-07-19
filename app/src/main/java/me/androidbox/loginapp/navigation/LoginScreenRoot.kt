@@ -37,13 +37,14 @@ data object LoginScreenRoot : Screen {
 
         LoginScreen(
             loginState = loginViewModel.loginState,
+
             onLoginAction = { loginAction ->
                 when(loginAction) {
                     LoginAction.OnLoginClicked -> {
                         loginViewModel.onLoginAction(loginAction)
                     }
                     LoginAction.OnTogglePasswordVisibility -> {
-
+                        loginViewModel.onLoginAction(loginAction)
                     }
                 }
             })
