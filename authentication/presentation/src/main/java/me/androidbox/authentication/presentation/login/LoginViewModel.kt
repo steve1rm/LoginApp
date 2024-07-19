@@ -15,11 +15,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import me.androidbox.authentication.domain.login.UserDataValidator
-
-/*  private val authorizationRepository: AuthorizationRepository */
+import me.androidbox.authentication.domain.login.usecases.LoginUserWithEmailAndPasswordUseCase
 
 class LoginViewModel(
-    private val userDataValidator: UserDataValidator
+    private val userDataValidator: UserDataValidator,
+    private val loginUserWithEmailAndPasswordUseCase: LoginUserWithEmailAndPasswordUseCase
 ) : ViewModel() {
 
     var loginState by mutableStateOf(LoginState())

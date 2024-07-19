@@ -1,6 +1,7 @@
 package me.androidbox.loginapp
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import me.androidbox.authentication.data.di.authenticationDataModule
 import me.androidbox.authentication.domain.di.authenticationDomainModule
 import me.androidbox.authentication.presentation.di.authenticationPresentationModule
@@ -12,6 +13,8 @@ class LoginAppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        FirebaseApp.initializeApp(this@LoginAppApplication)
 
         startKoin {
             androidLogger()
