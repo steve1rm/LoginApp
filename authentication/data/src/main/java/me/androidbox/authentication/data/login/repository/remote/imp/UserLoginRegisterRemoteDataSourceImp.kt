@@ -12,7 +12,7 @@ class UserLoginRegisterRemoteDataSourceImp(private val firebaseAuth: FirebaseAut
     UserLoginRegisterRemoteDataSource {
 
     override suspend fun registerUser(email: String, password: String): CheckResult<String, Unit, Unit> {
-/*        firebaseAuth.currentUser?.let {
+        firebaseAuth.currentUser?.let {
             Logger.d {
                 "User is already registered ${firebaseAuth.currentUser?.uid}"
             }
@@ -31,11 +31,11 @@ class UserLoginRegisterRemoteDataSourceImp(private val firebaseAuth: FirebaseAut
                         continuation.resume(CheckResult.Failure(exceptionError = DataError.Network.UNAUTHORIZED))
                     }
                 }
-        }*/
-        TODO()
+        }
     }
+
     override suspend fun loginUser(email: String, password: String): CheckResult<String, Unit, Unit> {
-       /* firebaseAuth.currentUser?.let {
+        firebaseAuth.currentUser?.let {
             Logger.d("User is already logged in ${firebaseAuth.currentUser?.uid}")
             return CheckResult.Success(it.uid)
         }
@@ -52,24 +52,21 @@ class UserLoginRegisterRemoteDataSourceImp(private val firebaseAuth: FirebaseAut
                         continuation.resume(CheckResult.Failure(exceptionError = DataError.Network.UNAUTHORIZED))
                     }
                 }
-        }*/
-        TODO()
+        }
     }
 
     override suspend fun logout(): CheckResult<Unit, Unit, Unit> {
-      /*  if(firebaseAuth.currentUser == null) {
+        if(firebaseAuth.currentUser == null) {
             return CheckResult.Success(Unit)
         }
 
         return suspendCoroutine { continuation ->
             firebaseAuth.signOut()
             continuation.resume(CheckResult.Success(Unit))
-        }*/
-        TODO()
+        }
     }
 
     override suspend fun isLoggedIn(): CheckResult<Boolean, Unit, Unit> {
-      //  return CheckResult.Success(firebaseAuth.currentUser == null)
-        TODO()
+        return CheckResult.Success(firebaseAuth.currentUser == null)
     }
 }

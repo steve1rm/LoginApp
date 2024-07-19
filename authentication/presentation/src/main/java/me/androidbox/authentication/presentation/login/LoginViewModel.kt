@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import me.androidbox.authentication.domain.login.UserDataValidator
 import me.androidbox.authentication.domain.login.usecases.LoginUserWithEmailAndPasswordUseCase
+import me.androidbox.authentication.domain.utils.CheckResult
+import me.androidbox.authentication.domain.utils.DataError
 
 class LoginViewModel(
     private val userDataValidator: UserDataValidator,
@@ -56,7 +58,7 @@ class LoginViewModel(
         viewModelScope.launch {
             loginState = loginState.copy(isLoggingIn = true)
 
-/*            val result = authorizationRepository.login(
+            val result = loginUserWithEmailAndPasswordUseCase.execute(
                 email = loginState.email.text.toString().trim(),
                 password = loginState.password.text.toString()
             )
@@ -64,21 +66,20 @@ class LoginViewModel(
             loginState = loginState.copy(isLoggingIn = false)
 
             when(result) {
-                is Result.Failure -> {
-                    *//** Display toast message *//*
-                    if(result.error == DataError.Network.UNAUTHORIZED) {
-                        eventLoginChannel.send(
-                            LoginEvent.OnLoginFailure(UiText.StringResource(R.string.incorrect_email_or_password)))
+                is CheckResult.Failure -> {
+                    /** Display toast message */
+                    if(result.exceptionError == DataError.Network.UNAUTHORIZED) {
+                        eventLoginChannel.send(LoginEvent.OnLoginFailure(result.exceptionError.toString()))
                     }
                     else {
-                        eventLoginChannel.send(LoginEvent.OnLoginFailure(result.error.toUiText()))
+                        eventLoginChannel.send(LoginEvent.OnLoginFailure(result.exceptionError.toString()))
                     }
                 }
-                is Result.Success -> {
-                    *//** Go to home page *//*
+                is CheckResult.Success -> {
+                    /** Go to home page */
                     eventLoginChannel.send(LoginEvent.OnLoginSuccess)
                 }
-            }*/
+            }
         }
     }
 
