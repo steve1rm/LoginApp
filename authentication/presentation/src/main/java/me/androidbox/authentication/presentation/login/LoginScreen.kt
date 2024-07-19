@@ -116,7 +116,9 @@ fun LoginScreen(
                     tag = "clickable_text",
                     start = offSet,
                     end = offSet
-                )
+                ).firstOrNull()?.let {
+                    onLoginAction(LoginAction.OnSignUpClicked)
+                }
             }
         }
     }

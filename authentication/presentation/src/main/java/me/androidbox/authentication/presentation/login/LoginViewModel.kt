@@ -51,6 +51,12 @@ class LoginViewModel(
                     isPasswordVisible = !loginState.isPasswordVisible
                 )
             }
+
+            LoginAction.OnSignUpClicked -> {
+                viewModelScope.launch {
+                    eventLoginChannel.send(LoginEvent.OnSignUpClicked)
+                }
+            }
         }
     }
 

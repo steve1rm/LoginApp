@@ -2,6 +2,7 @@ package me.androidbox.authentication.data.login.repository.remote.imp
 
 import co.touchlab.kermit.Logger
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.delay
 import me.androidbox.authentication.data.login.repository.remote.UserLoginRegisterRemoteDataSource
 import me.androidbox.authentication.domain.utils.CheckResult
 import me.androidbox.authentication.domain.utils.DataError
@@ -35,6 +36,9 @@ class UserLoginRegisterRemoteDataSourceImp(private val firebaseAuth: FirebaseAut
     }
 
     override suspend fun loginUser(email: String, password: String): CheckResult<String, Unit, Unit> {
+        /** Remove this, its just to add a small delay to simulate when a user logins */
+        delay(2_000)
+
         firebaseAuth.currentUser?.let {
             Logger.d("User is already logged in ${firebaseAuth.currentUser?.uid}")
             return CheckResult.Success(it.uid)

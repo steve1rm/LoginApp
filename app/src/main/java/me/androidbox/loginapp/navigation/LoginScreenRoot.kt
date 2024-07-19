@@ -25,12 +25,14 @@ data object LoginScreenRoot : Screen {
         ObserveAsEvents(flow = loginViewModel.loginEvent) { loginEvent ->
             when(loginEvent) {
                 is LoginEvent.OnLoginFailure -> {
-                    keyboardController?.hide()
                     Toast.makeText(context, loginEvent.error, Toast.LENGTH_LONG).show()
                 }
                 LoginEvent.OnLoginSuccess -> {
-                    keyboardController?.hide()
-                    /** Navigate to home screen */
+                    Toast.makeText(context, "You have successfully logged in", Toast.LENGTH_LONG).show()
+                }
+
+                LoginEvent.OnSignUpClicked -> {
+                    Toast.makeText(context, "Not Implemented yet", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -41,10 +43,14 @@ data object LoginScreenRoot : Screen {
             onLoginAction = { loginAction ->
                 when(loginAction) {
                     LoginAction.OnLoginClicked -> {
+                        keyboardController?.hide()
                         loginViewModel.onLoginAction(loginAction)
                     }
                     LoginAction.OnTogglePasswordVisibility -> {
                         loginViewModel.onLoginAction(loginAction)
+                    }
+                    LoginAction.OnSignUpClicked -> {
+                        Toast.makeText(context, "Not Implemented", Toast.LENGTH_LONG).show()
                     }
                 }
             })
