@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -38,6 +40,10 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+    packaging {
+        this.resources.excludes.add("META-INF/LICENSE.md")
+        this.resources.excludes.add("META-INF/LICENSE-notices.md")
     }
 }
 

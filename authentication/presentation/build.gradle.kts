@@ -36,6 +36,10 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        this.resources.excludes.add("META-INF/LICENSE.md")
+        this.resources.excludes.add("META-INF/LICENSE-notices.md")
+    }
 }
 
 dependencies {
