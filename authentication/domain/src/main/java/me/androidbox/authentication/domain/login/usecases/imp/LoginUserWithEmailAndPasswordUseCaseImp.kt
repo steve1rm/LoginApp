@@ -6,6 +6,7 @@ import me.androidbox.authentication.domain.utils.CheckResult
 
 class LoginUserWithEmailAndPasswordUseCaseImp(private val userValidationRepository: UserValidationRepository) :
     LoginUserWithEmailAndPasswordUseCase {
+
     override suspend fun execute(email: String, password: String): CheckResult<String, Unit, Unit> {
         return userValidationRepository.loginUser(email, password)
     }

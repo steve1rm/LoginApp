@@ -46,7 +46,11 @@ dependencies {
     implementation(libs.kermit)
     implementation(libs.firebase.auth)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.junit5.api)
+    testImplementation(libs.junit5.params)
+    runtimeOnly(libs.junit5.engine)
+    testImplementation(libs.assertk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
 }
