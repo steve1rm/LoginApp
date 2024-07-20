@@ -53,12 +53,20 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
-    debugImplementation(libs.androidx.ui.test.manifest)
+  /*  debugImplementation(libs.androidx.ui.test.manifest)
     androidTestImplementation(libs.junit5.api)
     androidTestImplementation(libs.junit5.params)
     runtimeOnly(libs.junit5.engine)
     androidTestImplementation(libs.assertk)
     androidTestImplementation(libs.turbine)
     androidTestImplementation(libs.coroutines.test)
-    androidTestImplementation(libs.junit5.android.test.compose)
+    androidTestImplementation(libs.junit5.android.test.compose)*/
+
+    testImplementation(libs.junit5.api)
+    testImplementation(libs.junit5.params)
+    runtimeOnly(libs.junit5.engine)
+    testImplementation(libs.assertk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
 }
