@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.junit5) apply false
 }
