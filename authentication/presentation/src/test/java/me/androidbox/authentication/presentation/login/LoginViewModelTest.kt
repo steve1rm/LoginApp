@@ -16,7 +16,6 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import java.util.UUID
 
-
 class LoginViewModelTest {
 
     private val userDataValidator = mock<UserDataValidator>()
