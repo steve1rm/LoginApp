@@ -20,14 +20,14 @@ Shows how to login and authenticate with firebase email and password authenticat
 - [X] Mockito
 
 ## Instructions
-Uses firebase email, password authentication.
-email: steve@mail.com
-password: Test12345
-
-* Correct credentials will show a toast message saying you are `successfully logged in` <br/>
-* Incorrect credentials will show a toast message saying `Unauthorized`
+Uses firebase email, password authentication.<br/>
+email: steve@mail.com <br/>
+password: Test12345<br/>
 
 As there is no logout firebase will cache the credentials. So the App's local cache will have to be cleared if you want to test login with correct and incorrect credentials.
+
+* Correct credentials will show a toast message saying you are `successfully logged in`<br/>
+* Incorrect credentials will show a toast message saying `Unauthorized`
 
 ## Screenshots
 ![Screenshot from 2024-07-21 20-54-52](https://github.com/user-attachments/assets/46f97bce-3930-481d-8746-90748a9ff9d6)
