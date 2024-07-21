@@ -17,3 +17,6 @@ Shows how to login and authenticate with firebase email and password authenticat
 - [x] Dark and light theme
 - [X] kermit for logging
 - [X] Unit testing with Junit5
+
+## Screenshots
+![Screenshot from 2024-07-21 20-54-52](https://github.com/user-attachments/assets/46f97bce-3930-481d-8746-90748a9ff9d6)
