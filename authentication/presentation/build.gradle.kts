@@ -1,7 +1,8 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -35,14 +36,41 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        this.resources.excludes.add("META-INF/LICENSE.md")
+        this.resources.excludes.add("META-INF/LICENSE-notices.md")
+    }
 }
 
 dependencies {
+    api(project(":designsystem"))
+    implementation(project(":authentication:domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.foundation.android)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.junit5.api)
+    androidTestImplementation(libs.junit5.params)
+    runtimeOnly(libs.junit5.engine)
+    androidTestImplementation(libs.assertk)
+    androidTestImplementation(libs.turbine)
+    androidTestImplementation(libs.coroutines.test)
+    androidTestImplementation(libs.junit5.android.test.compose)
+
+    testImplementation(libs.junit5.api)
+    testImplementation(libs.junit5.params)
+    runtimeOnly(libs.junit5.engine)
+    testImplementation(libs.assertk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
 }

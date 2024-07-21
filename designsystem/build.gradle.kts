@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
 }
@@ -35,6 +35,10 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        this.resources.excludes.add("META-INF/LICENSE.md")
+        this.resources.excludes.add("META-INF/LICENSE-notices.md")
+    }
 }
 
 dependencies {
@@ -46,4 +50,5 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    debugImplementation(libs.ui.tooling)
 }
