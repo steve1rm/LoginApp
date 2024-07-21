@@ -1,7 +1,7 @@
 # LoginApp
 
 ## In a Nutshell
-Shows how to login and authentication with firebase email and password authentication
+Shows how to login and authenticate with firebase email and password authentication
 
 ## Libraries and Tech Stack
 - [x] Jetpack Compose
