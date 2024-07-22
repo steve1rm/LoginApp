@@ -1,4 +1,4 @@
-# LoginApp
+# Login App
 
 ## In a Nutshell
 Shows how to login and authenticate with firebase email and password authentication
