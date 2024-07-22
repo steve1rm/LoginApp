@@ -9,6 +9,7 @@ Shows how to login and authenticate with firebase email and password authenticat
 - [x] Voyager for navigation
 - [x] Firebase authentication
 - [x] Clean architecture
+- [x] Authentication feature module
 - [x] Gradle version catalog
 - [x] kotlin coroutines
 - [x] Flows
