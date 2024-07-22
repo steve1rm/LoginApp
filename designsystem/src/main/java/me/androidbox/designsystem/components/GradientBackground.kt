@@ -50,30 +50,6 @@ fun GradientBackground(
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)) {
 
-        Box(modifier = modifier
-            .fillMaxSize()
-            .then(
-                if (shouldAddBlurEffect) {
-                    Modifier.blur(smallestDimensionDp / 3f)
-                } else {
-                    Modifier
-                }
-            )
-            .background(
-                brush = Brush.radialGradient(
-                    colors = listOf(
-                        if (shouldAddBlurEffect) primaryColor else primaryColor.copy(
-                            alpha = 0.3f
-                        ), MaterialTheme.colorScheme.background
-                    ),
-                    center = Offset(
-                        x = screenWidthPx / 2f,
-                        y = -100f
-                    ),
-                    radius = smallestDimensionPx / 2f
-                ),
-            ))
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
