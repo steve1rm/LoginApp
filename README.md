@@ -30,4 +30,4 @@ As there is no logout firebase will cache the credentials. So the App's local ca
 * Incorrect credentials will show a toast message saying `Unauthorized`
 
 ## Screenshots
-![Screenshot from 2024-07-21 20-54-52](https://github.com/user-attachments/assets/46f97bce-3930-481d-8746-90748a9ff9d6)
+![Screenshot from 2024-07-22 13-22-55](https://github.com/user-attachments/assets/b94e5218-3496-4b53-98fe-e8f61cb8ce30)
