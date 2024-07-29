@@ -13,7 +13,7 @@ Shows how to login and authenticate with firebase email and password authenticat
 - [x] Gradle version catalog
 - [x] kotlin coroutines
 - [x] Flows
-- [x] MVVM
+- [x] MVI
 - [x] Material design 3
 - [x] Dark and light theme
 - [X] kermit for logging
